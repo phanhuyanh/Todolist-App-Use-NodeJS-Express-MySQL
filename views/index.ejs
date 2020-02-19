@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist App</title>
+    <link rel="stylesheet" href="/public/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Todos</h1>
+        <div class="container__body">
+            <form action="/" method="POST">
+                <div class="form-group">
+                    <input type="text" placeholder="What need to be done?" class="form-control" id="input" name="todo">
+                    <button hidden type="submit" id="button"></button>
+                </div>
+            </form>
+            <% if(list.length) { %>
+            <div class="items">
+                <% for(let i = 0; i < list.length; i++) { %>
+                    <div class="item">
+                        <label class="checkbox">
+                            <form action="/updateState" method="POST">
+                                <% if(list[i].state == 'active') { %>
+                                    <input type="checkbox" name="state" value="active" class="type-checkbox">
+                                <% } %>
+                                <% if(list[i].state != 'active') { %>
+                                    <input type="checkbox" checked name="state" value="inactive" class="type-checkbox">
+                                <% } %>
+                                <span class="checkmark">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/>
+                                    </svg>
+                                </span>
+                                <input type="text" hidden value="<%= list[i].id %>" name="id">
+                                <button type="submit" hidden></button>
+                            </form>
+                        </label>
+                        <% if(list[i].state == 'active') { %>
+                            <p><%= list[i].name %> <%= list[i].id %> <%= list[i].state %></p>
+                        <% } %>
+                        <% if(list[i].state == 'inactive') { %>
+                            <p class="active"><%= list[i].name %> <%= list[i].id %> <%= list[i].state %></p>
+                        <% } %>
+                        <span class="del">
+                            <img src="./../public/img/delete.svg" alt="delete">
+                            <form action="/del" method="POST">
+                                <input type="text" hidden name="id" value="<%= list[i].id %>">
+                                <button type="submit" hidden></button>
+                            </form>
+                        </span>
+                    </div>
+                <% } %>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <script>
+        var input = document.getElementById('input')
+        var button = document.getElementById('button')
+        var del = document.querySelectorAll('.del')
+        var buttonDel = document.querySelectorAll('.del button')
+        var checkbox = document.querySelectorAll('.checkbox form .type-checkbox')
+        var btnUpdateState = document.querySelectorAll('.checkbox form button')
+        
+        input.addEventListener('keyup', e => {
+            if(e.keyCode !== 13 || e.target.value == '') return
+
+            button.addEventListener('click', function(e) {
+                console.log('click')
+            })
+        })
+        for(let i = 0; i < del.length; i++) {
+            del[i].addEventListener('click', function(e) {
+                buttonDel[i].click()
+            })
+        }
+        for(let i = 0; i < checkbox.length; i++) {
+            checkbox[i].addEventListener('change', function(e) {
+                btnUpdateState[i].click()
+            })
+        }
+    </script>
+</body>
+</html>

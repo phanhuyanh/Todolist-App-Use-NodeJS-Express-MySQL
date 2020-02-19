@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    background: #dadce0;
+}
+.container {
+    width: 500px;
+    margin: auto;
+}
+
+.container h1 {
+    color: #974321;
+    font-size: 2rem;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.container__body {
+    background: #fff;
+}
+
+.form-group {
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    background: none;
+    outline: 0;
+    color: #333;
+    height: 50px;
+    padding: 0 30px;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+.item {
+    height: 50px;
+    font-size: 1rem;
+    color: #333;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: .2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.item span.del {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: .5;
+    transform: rotate(0deg);
+    transition: .2s all ease-in-out;
+}
+.item span.del:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+    transition: .2s all ease-in-out;
+}
+
+.item span.del img {
+    width: 15px;
+    height: 15px;
+    background-position: center;
+    background-size: cover;
+}
+
+.item:hover {
+    background: #f7f7f7;
+}
+.items {
+    padding: 11px 0;
+}
+
+.checkbox {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid #dadce0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox:hover {
+    border-color: #000;
+}
+
+.checkbox input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+.checkbox .checkmark {
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+input:checked ~ span.checkmark {
+    display: flex;
+}
+
+.item p.active {
+    text-decoration: line-through;
+    opacity: .5;
+}
